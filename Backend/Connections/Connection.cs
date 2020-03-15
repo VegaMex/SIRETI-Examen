@@ -58,9 +58,32 @@ namespace Backend.Connections
             return lastInserted;
         }
 
-        public DataTable Get(string sqlCommand, string[] columns, object[] keys)
+        public DataTable GetData(string sqlCommand, string[] columns, object[] keys)
         {
-            throw new NotImplementedException();
+            DataTable dataTable = null;
+            var connection = new MySqlConnection();
+
+            try
+            {
+                var adapter = new MySqlDataAdapter();
+                var executable = FormatCommand(columns, keys);
+                var dataSet = new DataSet();
+
+                connection.ConnectionString = GetConnectionString();
+                connection.Open();
+                executable.CommandText = sqlCommand;
+
+                adapter.SelectCommand = executable;
+                adapter.SelectCommand.Connection = connection;
+                adapter.Fill(dataSet);
+                dataTable = dataSet.Tables[0];
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return dataTable;
         }
     }
 

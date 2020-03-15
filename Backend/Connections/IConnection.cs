@@ -10,6 +10,6 @@ namespace Backend.Connections
     public interface IConnection
     {
         long Execute(string sqlCommand, string[] columns, object[] keys);
-        DataTable Get(string sqlCommand, string[] columns, object[] keys);
+        DataTable GetData(string sqlCommand, string[] columns, object[] keys);
     }
 }

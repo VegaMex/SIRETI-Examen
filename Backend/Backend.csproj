@@ -55,6 +55,12 @@
     <Compile Include="Connections\Connection.cs" />
     <Compile Include="Connections\IConnection.cs" />
     <Compile Include="Connections\INewConnection.cs" />
+    <Compile Include="DAOS\DAOAlumno.cs" />
+    <Compile Include="DAOS\DAOCarrera.cs" />
+    <Compile Include="DAOS\DAOUsuario.cs" />
+    <Compile Include="Models\Alumno.cs" />
+    <Compile Include="Models\Carrera.cs" />
+    <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
