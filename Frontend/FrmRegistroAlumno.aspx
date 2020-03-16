@@ -18,6 +18,87 @@
             </div>
         </div>
     </header>
+
+    <div class="container px-3 py-3 mb-2">
+        <form id="form1" runat="server" novalidate>
+            <div class="form-row justify-content-center">
+                <div class="col-md-4 mb-3">
+                    <label for="txtControl">Número de control</label>
+                    <asp:TextBox ID="txtControl" TextMode="SingleLine" class="form-control" autocomplete="off" runat="server" required></asp:TextBox>
+                    <div class="invalid-feedback">
+                        El número de control es obligatorio y debe tener un formato válido
+                    </div>
+                </div>
+            </div>
+            <div class="form-row justify-content-center">
+                <div class="col-md-4 mb-3">
+                    <label for="txtNombre">Nombre</label>
+                    <asp:TextBox ID="txtNombre" TextMode="SingleLine" class="form-control" autocomplete="off" runat="server" required></asp:TextBox>
+                    <div class="invalid-feedback">
+                        El nombre es obligatorio y debe tener un formato válido
+                    </div>
+                </div>
+            </div>
+            <div class="form-row justify-content-center">
+                <div class="col-md-4 mb-3">
+                    <label for="txtPaterno">Apellido paterno</label>
+                    <asp:TextBox ID="txtPaterno" TextMode="SingleLine" class="form-control" autocomplete="off" runat="server" required></asp:TextBox>
+                    <div class="invalid-feedback">
+                        El apellido paterno es obligatorio y debe tener un formato válido
+                    </div>
+                </div>
+            </div>
+            <div class="form-row justify-content-center">
+                <div class="col-md-4 mb-3">
+                    <label for="txtMaterno">Apellido materno</label>
+                    <asp:TextBox ID="txtMaterno" TextMode="SingleLine" class="form-control" autocomplete="off" runat="server" required></asp:TextBox>
+                    <div class="invalid-feedback">
+                        El apellido materno es obligatorio y debe tener un formato válido
+                    </div>
+                </div>
+            </div>
+            <div class="form-row justify-content-center">
+                <div class="col-md-4 mb-3">
+                    <label for="txtCorreo">Correo electrónico</label>
+                    <asp:TextBox ID="txtCorreo" TextMode="Email" class="form-control" autocomplete="off" runat="server" required></asp:TextBox>
+                    <div class="invalid-feedback">
+                        El correo electrónico es obligatorio y debe tener un formato válido
+                    </div>
+                </div>
+            </div>
+            <div class="form-row justify-content-center">
+                <div class="col-md-4 mb-3">
+                    <label for="txtContra">Contraseña</label>
+                    <asp:TextBox ID="txtContra" TextMode="Password" class="form-control" autocomplete="off" runat="server" required></asp:TextBox>
+                    <div class="invalid-feedback">
+                        La contraseña es obligatoria y debe tener un formato válido
+                    </div>
+                </div>
+            </div>
+            <div class="form-row justify-content-center">
+                <div class="col-md-4 mb-3">
+                    <label for="txtContraConfirm">Confirmar contraseña</label>
+                    <asp:TextBox ID="txtContraConfirm" TextMode="Password" class="form-control" autocomplete="off" runat="server" required></asp:TextBox>
+                    <div class="invalid-feedback">
+                        La verificación de contraseña es obligatoria y debe tener un formato válido
+                    </div>
+                </div>
+            </div>
+                        <div class="form-row justify-content-center">
+                <div class="col-md-4 mb-3">
+                    <label for="txtCarrera">Carrera</label>
+                    <asp:DropDownList ID="ddlCarrera" class="form-control" runat="server" required></asp:DropDownList>
+                    <div class="invalid-feedback">
+                        Debe seleccionar una carrera
+                    </div>
+                </div>
+            </div>
+            <div class="form-row justify-content-center">
+                <asp:Button ID="btnIniciarSesion" class="btn btn-primary" runat="server" Text="Iniciar Sesión" OnClick="btnIniciarSesion_Click" />
+            </div>
+        </form>
+    </div>
+
     <footer class="mt-auto py-3">
         <p>by <a href="http:\\www.itsur.edu.mx">Instituto Tecnológico Superior del Sur de Guanajuato</a>.</p>
         <p>Programación Web II</p>
