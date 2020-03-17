@@ -76,12 +76,14 @@
     <Content Include="css\datatables.css" />
     <Content Include="css\style.css" />
     <Content Include="Default.aspx" />
+    <Content Include="FrmLogin.aspx" />
     <Content Include="FrmRegistroAlumno.aspx" />
     <Content Include="js\bootstrap.bundle.js" />
     <Content Include="js\bootstrap.bundle.min.js" />
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\datatables.js" />
+    <Content Include="js\frmLogin.js" />
     <Content Include="js\frmRegistroAlumno.js" />
     <Content Include="js\jquery-3.4.1.js" />
     <Content Include="Web.config" />
@@ -93,6 +95,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FrmLogin.aspx.cs">
+      <DependentUpon>FrmLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FrmLogin.aspx.designer.cs">
+      <DependentUpon>FrmLogin.aspx</DependentUpon>
     </Compile>
     <Compile Include="FrmRegistroAlumno.aspx.cs">
       <DependentUpon>FrmRegistroAlumno.aspx</DependentUpon>

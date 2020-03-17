@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,6 +45,32 @@ namespace Backend.DAOS
 
             IConnection localConnection = connection.Create();
             localConnection.Execute(sqlCommand, columns, keys);
+        }
+
+        public Usuario Login(string email, string password)
+        {
+            IConnection localConnection = connection.Create();
+
+            var data = localConnection.GetData("SELECT * FROM usuarios WHERE correo_usuario = @correo_usuario && contra_usuario = @contra_usuario", new string[] { "correo_usuario", "contra_usuario" }, new string[] { email, password });
+
+            Usuario usuario = null;
+
+            foreach (DataRow row in data.Rows)
+            {
+                usuario = new Usuario
+                {
+                    IdUsuario = (int)row.ItemArray[0],
+                    NombreUsuario = (string)row.ItemArray[1],
+                    PaternoUsuario = (string)row.ItemArray[2],
+                    MaternoUsuario = (string)row.ItemArray[3],
+                    CorreoUsuario = (string)row.ItemArray[4],
+                    ContraUsuario = (string)row.ItemArray[5],
+                    CarreraUsuario = (int)row.ItemArray[6],
+                    TipoUsuario = (int)row.ItemArray[7]
+                };
+            }
+
+            return usuario;
         }
     }
 }

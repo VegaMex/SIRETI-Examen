@@ -15,6 +15,7 @@ namespace Backend.Models
         public string MaternoAlumno { get; set; }
         public string CorreoAlumno { get; set; }
         public string ContraAlumno { get; set; }
-        public string CarreraAlumno { get; set; }
+        public int CarreraAlumno { get; set; }
+        public int TipoAlumno { get; set; }
     }
 }

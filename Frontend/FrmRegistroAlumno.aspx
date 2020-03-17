@@ -99,7 +99,7 @@
             </div>
             <div class="form-row justify-content-center">
                 <asp:Button ID="btnCancelar" class="btn btn-secondary mr-4" runat="server" Text="Cancelar" OnClick="btnCancelar_Click" />
-                <asp:Button ID="btnIniciarSesion" class="btn btn-primary" runat="server" Text="Iniciar Sesión" OnClick="btnIniciarSesion_Click" />
+                <asp:Button ID="btnRegistrar" class="btn btn-primary" runat="server" Text="Registrarme" OnClick="btnRegistrar_Click" />
             </div>
         </form>
     </div>

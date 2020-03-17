@@ -16,7 +16,7 @@ namespace Frontend
 
         protected void btnIniciarSesion_Click(object sender, EventArgs e)
         {
-            
+            Response.Redirect("FrmLogin.aspx");
         }
         protected void btnRegistrarse_Click(object sender, EventArgs e)
         {

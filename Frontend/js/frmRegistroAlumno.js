@@ -1,5 +1,5 @@
 ﻿window.addEventListener('load', function () {
-    var button = document.getElementById('btnIniciarSesion');
+    var button = document.getElementById('btnRegistrar');
     button.addEventListener('click', function (event) {
         var txtControl = document.getElementById('txtControl');
         var txtNombre = document.getElementById('txtNombre');

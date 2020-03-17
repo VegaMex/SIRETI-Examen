@@ -25,7 +25,7 @@ namespace Frontend
             }
         }
 
-        protected void btnIniciarSesion_Click(object sender, EventArgs e)
+        protected void btnRegistrar_Click(object sender, EventArgs e)
         {
             /* Aquí falta una validación del lado del servidor */
             var alumno = new Alumno
@@ -36,11 +36,12 @@ namespace Frontend
                 MaternoAlumno = txtMaterno.Text,
                 CorreoAlumno = txtCorreo.Text,
                 ContraAlumno = txtContra.Text,
-                CarreraAlumno = ddlCarrera.SelectedItem.Value
+                CarreraAlumno = Int32.Parse(ddlCarrera.SelectedItem.Value),
+                TipoAlumno = 1
             };
             if (new DAOAlumno(new NewConnection()).Insert(alumno))
             {
-                Response.Redirect("frmLogin.aspx");
+                Response.Redirect("FrmLogin.aspx");
             }
             else
             {
@@ -50,7 +51,7 @@ namespace Frontend
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("frmLogin.aspx");
+            Response.Redirect("FrmLogin.aspx");
         }
     }
 }
