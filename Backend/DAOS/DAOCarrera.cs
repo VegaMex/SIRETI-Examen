@@ -23,14 +23,17 @@ namespace Backend.DAOS
             var list = new List<Carrera>();
             IConnection localConnection = connection.Create();
 
-            var data = localConnection.GetData("SELECT nombre_carrera FROM carreras WHERE id_carrera != 1", new string[0], new string[0]);
+            var data = localConnection.GetData("SELECT id_carrera, nombre_carrera FROM carreras WHERE id_carrera != 1", new string[0], new string[0]);
 
             Carrera carrera;
 
             foreach (DataRow row in data.Rows)
             {
-                carrera = new Carrera();
-                carrera.NombreCarrera = (string)row.ItemArray[0];
+                carrera = new Carrera
+                {
+                    IdCarrera = (int)row.ItemArray[0],
+                    NombreCarrera = (string)row.ItemArray[1]
+                };
                 list.Add(carrera);
             }
 

@@ -20,7 +20,11 @@
     </header>
 
     <div class="container px-3 py-3 mb-2">
+        <h1 class="display-4 text-center">Registro de alumnos</h1>
         <form id="form1" runat="server" novalidate>
+            <div id="serverError" class="alert alert-danger" runat="server">
+                Se ha producido un error en el servidor
+            </div>
             <div class="form-row justify-content-center">
                 <div class="col-md-4 mb-3">
                     <label for="txtControl">Número de control</label>
@@ -53,7 +57,7 @@
                     <label for="txtMaterno">Apellido materno</label>
                     <asp:TextBox ID="txtMaterno" TextMode="SingleLine" class="form-control" autocomplete="off" runat="server" required></asp:TextBox>
                     <div class="invalid-feedback">
-                        El apellido materno es obligatorio y debe tener un formato válido
+                        El apellido materno debe tener un formato válido
                     </div>
                 </div>
             </div>
@@ -80,11 +84,11 @@
                     <label for="txtContraConfirm">Confirmar contraseña</label>
                     <asp:TextBox ID="txtContraConfirm" TextMode="Password" class="form-control" autocomplete="off" runat="server" required></asp:TextBox>
                     <div class="invalid-feedback">
-                        La verificación de contraseña es obligatoria y debe tener un formato válido
+                        La verificación de contraseña es obligatoria y las contraseñas deben coincidir
                     </div>
                 </div>
             </div>
-                        <div class="form-row justify-content-center">
+            <div class="form-row justify-content-center">
                 <div class="col-md-4 mb-3">
                     <label for="txtCarrera">Carrera</label>
                     <asp:DropDownList ID="ddlCarrera" class="form-control" runat="server" required></asp:DropDownList>
@@ -94,6 +98,7 @@
                 </div>
             </div>
             <div class="form-row justify-content-center">
+                <asp:Button ID="btnCancelar" class="btn btn-secondary mr-4" runat="server" Text="Cancelar" OnClick="btnCancelar_Click" />
                 <asp:Button ID="btnIniciarSesion" class="btn btn-primary" runat="server" Text="Iniciar Sesión" OnClick="btnIniciarSesion_Click" />
             </div>
         </form>
@@ -105,5 +110,6 @@
     </footer>
     <script src="js/jquery-3.4.1.js"></script>
     <script src="js/bootstrap.js"></script>
+    <script src="js/frmRegistroAlumno.js"></script>
 </body>
 </html>

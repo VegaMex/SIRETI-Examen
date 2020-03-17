@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Backend.DAOS;
+using Backend.Models;
+using Backend.Security;
 using Backend.Connections;
 
 namespace Frontend
@@ -13,6 +15,7 @@ namespace Frontend
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            serverError.Visible = false;
             if (!IsPostBack)
             {
                 ddlCarrera.DataSource = new DAOCarrera(new NewConnection()).GetCarreras();
@@ -24,7 +27,30 @@ namespace Frontend
 
         protected void btnIniciarSesion_Click(object sender, EventArgs e)
         {
+            /* Aquí falta una validación del lado del servidor */
+            var alumno = new Alumno
+            {
+                ControlAlumno = txtControl.Text,
+                NombreAlumno = txtNombre.Text,
+                PaternoAlumno = txtPaterno.Text,
+                MaternoAlumno = txtMaterno.Text,
+                CorreoAlumno = txtCorreo.Text,
+                ContraAlumno = txtContra.Text,
+                CarreraAlumno = ddlCarrera.SelectedItem.Value
+            };
+            if (new DAOAlumno(new NewConnection()).Insert(alumno))
+            {
+                Response.Redirect("frmLogin.aspx");
+            }
+            else
+            {
+                serverError.Visible = true;
+            }
+        }
 
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("frmLogin.aspx");
         }
     }
 }

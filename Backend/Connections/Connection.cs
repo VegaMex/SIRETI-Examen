@@ -21,7 +21,7 @@ namespace Backend.Connections
             return String.Format("Server={0}; Database={4}; Uid={2}; Pwd={3}; Allow User Variables={5};", server, port, user, password, database, allow);
         }
 
-        private static MySqlCommand FormatCommand(string[] columns, object[] keys)
+        private static MySqlCommand FormatCommand(string sqlCommand, string[] columns, object[] keys)
         {
             var executable = new MySqlCommand();
             int min = Math.Min(columns.Length, keys.Length);
@@ -40,7 +40,7 @@ namespace Backend.Connections
             try
             {
                 var adapter = new MySqlDataAdapter();
-                var executable = FormatCommand(columns, keys);
+                var executable = FormatCommand(sqlCommand, columns, keys);
                 var dataSet = new DataSet();
 
                 connection.ConnectionString = GetConnectionString();
@@ -66,7 +66,7 @@ namespace Backend.Connections
             try
             {
                 var adapter = new MySqlDataAdapter();
-                var executable = FormatCommand(columns, keys);
+                var executable = FormatCommand(sqlCommand, columns, keys);
                 var dataSet = new DataSet();
 
                 connection.ConnectionString = GetConnectionString();

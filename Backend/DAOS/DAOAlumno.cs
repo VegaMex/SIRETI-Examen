@@ -17,12 +17,14 @@ namespace Backend.DAOS
             this.connection = connection;
         }
 
-        public void Insert(Alumno alumno)
+        public bool Insert(Alumno alumno)
         {
-            var sqlCommand = "INSERT INTO alumnos (control_alumno, nombre_alumno, paterno_alumno, materno_alumno, correo_alumno, contra_alumno, carrera_alumno)" +
-                "VALUES (@ControlAlumno, @NombreAlumno, @PaternoAlumno, @MaternoAlumno, @CorreoAlumno, @ContraAlumno, @CarreraAlumno)";
-            var columns = new string[]
+            try
             {
+                var sqlCommand = "INSERT INTO alumnos (control_alumno, nombre_alumno, paterno_alumno, materno_alumno, correo_alumno, contra_alumno, carrera_alumno) " +
+                "VALUES (@control_alumno, @nombre_alumno, @paterno_alumno, @materno_alumno, @correo_alumno, SHA1(@contra_alumno), @carrera_alumno)";
+                var columns = new string[]
+                {
                 "control_alumno",
                 "nombre_alumno",
                 "paterno_alumno",
@@ -30,9 +32,9 @@ namespace Backend.DAOS
                 "correo_alumno",
                 "contra_alumno",
                 "carrera_alumno"
-            };
-            var keys = new object[]
-            {
+                };
+                var keys = new object[]
+                {
                 alumno.ControlAlumno,
                 alumno.NombreAlumno,
                 alumno.PaternoAlumno,
@@ -40,10 +42,17 @@ namespace Backend.DAOS
                 alumno.CorreoAlumno,
                 alumno.ContraAlumno,
                 alumno.CarreraAlumno
-            };
+                };
 
-            IConnection localConnection = connection.Create();
-            localConnection.Execute(sqlCommand, columns, keys);
+                IConnection localConnection = connection.Create();
+                localConnection.Execute(sqlCommand, columns, keys);
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }
