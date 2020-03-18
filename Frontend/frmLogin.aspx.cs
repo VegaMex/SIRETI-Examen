@@ -40,7 +40,14 @@ namespace Frontend
                 if (usuario != null)
                 {
                     Session["tipo"] = usuario.TipoUsuario;
-                    Session["nombre"] = String.Format("{0} {1} {2}", usuario.NombreUsuario, usuario.PaternoUsuario, usuario.MaternoUsuario);
+                    if (usuario.TipoUsuario == 0)
+                    {
+                        Session["nombre"] = "ADMINISTRADOR";
+                    }
+                    else
+                    {
+                        Session["nombre"] = String.Format("{0} {1} {2}", usuario.NombreUsuario, usuario.PaternoUsuario, usuario.MaternoUsuario);
+                    }
                     Response.Redirect("FrmInicio.aspx");
                 }
                 else
@@ -48,7 +55,6 @@ namespace Frontend
                     serverError.Visible = true;
                 }
             }
-            //Alumno a = new DAOAlumno(new NewConnection()).Login("oscar@mail.com", "c8fd86a8122bd6134b4ad704080b2e9467f281af");
         }
     }
 }

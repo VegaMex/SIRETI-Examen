@@ -76,6 +76,7 @@
     <Content Include="css\datatables.css" />
     <Content Include="css\style.css" />
     <Content Include="Default.aspx" />
+    <Content Include="FrmInicio.aspx" />
     <Content Include="FrmLogin.aspx" />
     <Content Include="FrmRegistroAlumno.aspx" />
     <Content Include="js\bootstrap.bundle.js" />
@@ -95,6 +96,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FrmInicio.aspx.cs">
+      <DependentUpon>FrmInicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FrmInicio.aspx.designer.cs">
+      <DependentUpon>FrmInicio.aspx</DependentUpon>
     </Compile>
     <Compile Include="FrmLogin.aspx.cs">
       <DependentUpon>FrmLogin.aspx</DependentUpon>
