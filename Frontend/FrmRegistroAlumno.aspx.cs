@@ -27,24 +27,42 @@ namespace Frontend
 
         protected void btnRegistrar_Click(object sender, EventArgs e)
         {
-            /* Aquí falta una validación del lado del servidor */
-            var alumno = new Alumno
+            var keys = new string[]
             {
-                ControlAlumno = txtControl.Text,
-                NombreAlumno = txtNombre.Text,
-                PaternoAlumno = txtPaterno.Text,
-                MaternoAlumno = txtMaterno.Text,
-                CorreoAlumno = txtCorreo.Text,
-                ContraAlumno = txtContra.Text,
-                CarreraAlumno = Int32.Parse(ddlCarrera.SelectedItem.Value),
-                TipoAlumno = 1
+                txtControl.Text,
+                txtNombre.Text,
+                txtPaterno.Text,
+                txtMaterno.Text,
+                txtCorreo.Text,
+                txtContra.Text,
+                txtContraConfirm.Text
             };
-            if (new DAOAlumno(new NewConnection()).Insert(alumno))
+
+            if (ValidatorService.AllRegister(keys, 0))
             {
-                Response.Redirect("FrmLogin.aspx");
+                var alumno = new Alumno
+                {
+                    ControlAlumno = txtControl.Text,
+                    NombreAlumno = txtNombre.Text,
+                    PaternoAlumno = txtPaterno.Text,
+                    MaternoAlumno = txtMaterno.Text,
+                    CorreoAlumno = txtCorreo.Text,
+                    ContraAlumno = txtContra.Text,
+                    CarreraAlumno = Int32.Parse(ddlCarrera.SelectedItem.Value),
+                    TipoAlumno = 1
+                };
+                if (new DAOAlumno(new NewConnection()).Insert(alumno))
+                {
+                    Response.Redirect("FrmLogin.aspx");
+                }
+                else
+                {
+                    serverError.Visible = true;
+                }
             }
             else
             {
+                serverError.InnerText = "Los datos se modificaron y ya no son válidos";
                 serverError.Visible = true;
             }
         }

@@ -20,40 +20,55 @@ namespace Frontend
 
         protected void btnIniciarSesion_Click(object sender, EventArgs e)
         {
-            /* Aquí falta una validación del lado del servidor */
-            var email = txtCorreo.Text;
-            var password = PasswordService.GetHash(txtContra.Text);
-            Alumno alumno;
-            Usuario usuario;
-            alumno = new DAOAlumno(new NewConnection()).Login(email, password);
 
-            if (alumno != null)
+            var keys = new string[]
             {
-                Session["tipo"] = alumno.TipoAlumno;
-                Session["nombre"] = String.Format("{0} {1} {2}", alumno.NombreAlumno, alumno.PaternoAlumno, alumno.MaternoAlumno);
-                Response.Redirect("FrmInicio.aspx");
-            }
-            else
-            {
-                usuario = new DAOUsuario(new NewConnection()).Login(email, password);
+                txtCorreo.Text,
+                txtContra.Text
+            };
 
-                if (usuario != null)
+            if (ValidatorService.AllRegister(keys, 1))
+            {
+                var email = txtCorreo.Text;
+                var password = PasswordService.GetHash(txtContra.Text);
+                Alumno alumno;
+                Usuario usuario;
+                alumno = new DAOAlumno(new NewConnection()).Login(email, password);
+
+                if (alumno != null)
                 {
-                    Session["tipo"] = usuario.TipoUsuario;
-                    if (usuario.TipoUsuario == 0)
-                    {
-                        Session["nombre"] = "ADMINISTRADOR";
-                    }
-                    else
-                    {
-                        Session["nombre"] = String.Format("{0} {1} {2}", usuario.NombreUsuario, usuario.PaternoUsuario, usuario.MaternoUsuario);
-                    }
+                    Session["tipo"] = alumno.TipoAlumno;
+                    Session["nombre"] = String.Format("{0} {1} {2}", alumno.NombreAlumno, alumno.PaternoAlumno, alumno.MaternoAlumno);
                     Response.Redirect("FrmInicio.aspx");
                 }
                 else
                 {
-                    serverError.Visible = true;
+                    usuario = new DAOUsuario(new NewConnection()).Login(email, password);
+
+                    if (usuario != null)
+                    {
+                        Session["tipo"] = usuario.TipoUsuario;
+                        if (usuario.TipoUsuario == 0)
+                        {
+                            Session["nombre"] = "ADMINISTRADOR";
+                        }
+                        else
+                        {
+                            Session["nombre"] = String.Format("{0} {1} {2}", usuario.NombreUsuario, usuario.PaternoUsuario, usuario.MaternoUsuario);
+                        }
+                        Response.Redirect("FrmInicio.aspx");
+                    }
+                    else
+                    {
+                        serverError.InnerText = "El usuario especificado no existe";
+                        serverError.Visible = true;
+                    }
                 }
+            }
+            else
+            {
+                serverError.InnerText = "Los datos se modificaron y ya no son válidos";
+                serverError.Visible = true;
             }
         }
     }
