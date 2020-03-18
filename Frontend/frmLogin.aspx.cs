@@ -48,6 +48,7 @@ namespace Frontend
                     if (usuario != null)
                     {
                         Session["tipo"] = usuario.TipoUsuario;
+                        Session["carrera"] = usuario.CarreraUsuario;
                         if (usuario.TipoUsuario == 0)
                         {
                             Session["nombre"] = "ADMINISTRADOR";

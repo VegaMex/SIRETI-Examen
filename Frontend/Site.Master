@@ -13,182 +13,182 @@
     </asp:ContentPlaceHolder>
 </head>
 <body class="d-flex flex-column h-100">
-    <header class="py-1">
-        <div class="row flex-nowrap justify-content-between align-items-center">
-            <div class="col-4 text-center">
-                <h1><a class="header-logo text-dark" href="#">SIRETI</a></h1>
+        <header class="py-1">
+            <div class="row flex-nowrap justify-content-between align-items-center">
+                <div class="col-4 text-center">
+                    <h1><a class="header-logo text-dark" href="#">SIRETI</a></h1>
+                </div>
+                <div class="col-4 d-flex justify-content-end  mr-4">
+                    <%--<asp:Button ID="btnCerrarSesion" runat="server" CssClass="btn btn-sm btn-outline-danger" Text="Cerrar Sesión" OnClick="btnCerrarSesion_Click" />--%>
+                </div>
             </div>
-            <div class="col-4 d-flex justify-content-end  mr-4">
-                <a class="btn btn-sm btn-outline-danger" href="#">Cerrar sesión</a>
+        </header>
+        <div class="nav-scroller mb-2 sticky-top">
+            <div class="navbar navbar-expand-md navbar-dark bg-cyan font-weight-bold">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <% 
+                        if (Session["tipo"] == null)
+                        {
+                            Response.Redirect("Default.aspx");
+                        }
+                        int tipo = Int32.Parse(Session["tipo"].ToString());
+                        if (tipo == 0) // ADMIN
+                        {
+                    %>
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Usuarios
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="FrmListausuarios.aspx">Gestionar usuarios</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <%
+                        }
+                        else if (tipo == 1) // ALUMNO
+                        {
+                    %>
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Residencias
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="#">Registrar anteproyecto</a>
+                                <a class="dropdown-item" href="#">Revisar el dictamen de anteproyecto</a>
+                                <a class="dropdown-item" href="#">Descargar formatos</a>
+                                <a class="dropdown-item" href="#">Entrega de documentos</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Titulación
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="#">Consultar dictamen</a>
+                                <a class="dropdown-item" href="#">Consultar liberación</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <%
+                        }
+                        else if (tipo == 2) // COORDINADOR
+                        {
+                    %>
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Residencias
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="#">Solicitudes de anteproyecto</a>
+                                <a class="dropdown-item" href="#">Asignar asesores</a>
+                                <a class="dropdown-item" href="#">Revisión de estatus</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Titulación
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="#">Asignar revisores</a>
+                                <a class="dropdown-item" href="#">Revisión de estatus</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Usuarios
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="FrmListausuarios.aspx">Gestionar usuarios</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <%
+                        }
+                        else if (tipo == 3) // ENCARGADO
+                        {
+                    %>
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Residencias
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="#">Asignar asesores</a>
+                                <a class="dropdown-item" href="#">Liberación de proyecto</a>
+                                <a class="dropdown-item" href="#">Revisión de estatus</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Titulación
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="#">Asignar revisores</a>
+                                <a class="dropdown-item" href="#">Revisión de estatus</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Usuarios
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="FrmListausuarios.aspx">Gestionar usuarios</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <%
+                        }
+                        else // DOCENTE
+                        {
+                    %>
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Residencias
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="#">Entrega de documentos</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Titulación
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="#">Emitir dictamen</a>
+                                <a class="dropdown-item" href="#">Revisión de estatus y liberación</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <%    
+                        }
+                    %>
+                </div>
             </div>
         </div>
-    </header>
-    <div class="nav-scroller mb-2 sticky-top">
-        <div class="navbar navbar-expand-md navbar-dark bg-cyan font-weight-bold">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <% 
-                    if (Session["tipo"] == null)
-                    {
-                        Response.Redirect("Default.aspx");
-                    }
-                    int tipo = Int32.Parse(Session["tipo"].ToString());
-                    if (tipo == 0)
-                    {
-                %>
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Usuarios
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Gestionar usuarios</a>
-                        </div>
-                    </li>
-                </ul>
-                <%
-                    }
-                    else if (tipo == 1)
-                    {
-                %>
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Residencias
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Registrar anteproyecto</a>
-                            <a class="dropdown-item" href="#">Revisar el dictamen de anteproyecto</a>
-                            <a class="dropdown-item" href="#">Descargar formatos</a>
-                            <a class="dropdown-item" href="#">Entrega de documentos</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Titulación
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Consultar dictamen</a>
-                            <a class="dropdown-item" href="#">Consultar liberación</a>
-                        </div>
-                    </li>
-                </ul>
-                <%
-                    }
-                    else if (tipo == 2)
-                    {
-                %>
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Residencias
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Solicitudes de anteproyecto</a>
-                            <a class="dropdown-item" href="#">Asignar asesores</a>
-                            <a class="dropdown-item" href="#">Revisión de estatus</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Titulación
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Asignar revisores</a>
-                            <a class="dropdown-item" href="#">Revisión de estatus</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Usuarios
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Gestionar usuarios</a>
-                        </div>
-                    </li>
-                </ul>
-                <%
-                    }
-                    else if (tipo == 3)
-                    {
-                %>
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Residencias
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Asignar asesores</a>
-                            <a class="dropdown-item" href="#">Liberación de proyecto</a>
-                            <a class="dropdown-item" href="#">Revisión de estatus</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Titulación
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Asignar revisores</a>
-                            <a class="dropdown-item" href="#">Revisión de estatus</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Usuarios
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Gestionar usuarios</a>
-                        </div>
-                    </li>
-                </ul>
-                <%
-                    }
-                    else
-                    {
-                %>
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Residencias
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Entrega de documentos</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Titulación
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Emitir dictamen</a>
-                            <a class="dropdown-item" href="#">Revisión de estatus y liberación</a>
-                        </div>
-                    </li>
-                </ul>
-                <%    
-                    }
-                %>
-            </div>
-        </div>
-    </div>
     <div class="container p-3 mb-2">
         <asp:ContentPlaceHolder ID="content" runat="server">
         </asp:ContentPlaceHolder>
@@ -198,7 +198,6 @@
             <p>by <a href="http:\\www.itsur.edu.mx">Instituto Tecnológico Superior del Sur de Guanajuato</a>.</p>
             <p>Programación Web II</p>
         </div>
-
     </footer>
     <script src="js/jquery-3.4.1.js"></script>
     <script src="js/bootstrap.js"></script>

@@ -16,5 +16,8 @@ namespace Backend.Models
         public string ContraUsuario { get; set; }
         public int CarreraUsuario { get; set; }
         public int TipoUsuario { get; set; }
+        public string NombreCompletoUsuario { get; set; }
+        public string CarreraUsuarioString { get; set; }
+        public string TipoUsuarioString { get; set; }
     }
 }

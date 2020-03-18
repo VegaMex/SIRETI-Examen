@@ -72,5 +72,112 @@ namespace Backend.DAOS
 
             return usuario;
         }
+
+        public List<Usuario> GetAllUsuarios()
+        {
+            var list = new List<Usuario>();
+            IConnection localConnection = connection.Create();
+
+            var data = localConnection.GetData("SELECT * FROM usuarios WHERE id_usuario != 1", new string[0], new string [0]);
+
+            Usuario usuario;
+
+            foreach (DataRow row in data.Rows)
+            {
+                usuario = new Usuario
+                {
+                    IdUsuario = (int)row.ItemArray[0],
+                    NombreUsuario = (string)row.ItemArray[1],
+                    PaternoUsuario = (string)row.ItemArray[2],
+                    MaternoUsuario = (string)row.ItemArray[3],
+                    CorreoUsuario = (string)row.ItemArray[4],
+                    ContraUsuario = (string)row.ItemArray[5],
+                    CarreraUsuario = (int)row.ItemArray[6],
+                    TipoUsuario = (int)row.ItemArray[7],
+                    NombreCompletoUsuario = string.Format("{0} {1} {2}", (string)row.ItemArray[1], (string)row.ItemArray[2], (string)row.ItemArray[3]),
+                    CarreraUsuarioString = GetText(0, (int)row.ItemArray[6]),
+                    TipoUsuarioString = GetText(1, (int)row.ItemArray[7])
+                };
+                list.Add(usuario);
+            }
+
+            return list;
+        }
+
+        public List<Usuario> GetAllDocentes(string carrera)
+        {
+            var list = new List<Usuario>();
+            IConnection localConnection = connection.Create();
+
+            var data = localConnection.GetData("SELECT * FROM usuarios WHERE id_usuario != 1 && tipo_usuario = 4 && carrera_usuario = @carrera_usuario", new string[] { "carrera_usuario" }, new string[] { carrera });
+
+            Usuario usuario;
+
+            foreach (DataRow row in data.Rows)
+            {
+                usuario = new Usuario
+                {
+                    IdUsuario = (int)row.ItemArray[0],
+                    NombreUsuario = (string)row.ItemArray[1],
+                    PaternoUsuario = (string)row.ItemArray[2],
+                    MaternoUsuario = (string)row.ItemArray[3],
+                    CorreoUsuario = (string)row.ItemArray[4],
+                    ContraUsuario = (string)row.ItemArray[5],
+                    CarreraUsuario = (int)row.ItemArray[6],
+                    TipoUsuario = (int)row.ItemArray[7],
+                    NombreCompletoUsuario = string.Format("{0} {1} {2}", (string)row.ItemArray[1], (string)row.ItemArray[2], (string)row.ItemArray[3]),
+                    CarreraUsuarioString = GetText(0, (int)row.ItemArray[6]),
+                    TipoUsuarioString = GetText(1, (int)row.ItemArray[7])
+                };
+                list.Add(usuario);
+            }
+
+            return list;
+        }
+
+        public static string GetText(int key, int value)
+        {
+            switch (key)
+            {
+                case 0: //Carrera
+                    switch (value) 
+                    {
+                        case 2:
+                            return "Ing. Sistemas Computacionales";
+                        case 3:
+                            return "Ing. Informática";
+                        case 4:
+                            return "Ing. Electrónica";
+                        case 5:
+                            return "Ing. Sistemas Automotrices";
+                        case 6:
+                            return "Ing. Ambiental";
+                        case 7:
+                            return "Ing. Industrial";
+                        case 8:
+                            return "Ing. Gestión Empresarial";
+                        case 9:
+                            return "Lic. Gastronomía";
+                        default:
+                            return "Desconocida";
+                    }
+                case 1: //Tipo
+                    switch (value)
+                    {
+                        case 0:
+                            return "Admin";
+                        case 1:
+                            return "Alumno";
+                        case 2:
+                            return "Coordinador";
+                        case 3:
+                            return "Encargado";
+                        case 4:
+                            return "Docente";
+                    }
+                    break;
+            }
+            return "";
+        }
     }
 }
