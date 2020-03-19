@@ -69,7 +69,26 @@ namespace Backend.DAOS
 
                 return true;
             }
-            catch (Exception e)
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool NewPassword(string newPassword, string id)
+        {
+            try
+            {
+                var sqlCommand = "UPDATE usuarios SET contra_usuario = SHA1(@contra_usuario) WHERE id_usuario = @id_usuario LIMIT 1";
+                var columns = new string[] { "contra_usuario", "id_usuario" };
+                var keys = new string[] { newPassword, id };
+
+                IConnection localConnection = connection.Create();
+                localConnection.Execute(sqlCommand, columns, keys);
+
+                return true;
+            }
+            catch
             {
                 return false;
             }

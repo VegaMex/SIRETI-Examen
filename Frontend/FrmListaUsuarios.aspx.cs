@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Backend.Connections;
 using Backend.DAOS;
+using Backend.Security;
 
 namespace Frontend
 {
@@ -63,6 +64,13 @@ namespace Frontend
                     Response.Write("window.addEventListener('load', function () {$('#mdlConfirmarEliminacion').modal('show');});");
                     Response.Write("</script>");
                     break;
+                case "btnCambiarContra":
+                    IdUsuario.Value = grvListaUsuarios.Rows[int.Parse(e.CommandArgument.ToString())].Cells[0].Text;
+                    NombreUsuario.Value = grvListaUsuarios.Rows[int.Parse(e.CommandArgument.ToString())].Cells[1].Text;
+                    Response.Write("<script>");
+                    Response.Write("window.addEventListener('load', function () {$('#mdlCambiarContra').modal('show');});");
+                    Response.Write("</script>");
+                    break;
             }
         }
 
@@ -97,6 +105,29 @@ namespace Frontend
             else
             {
                 serverError.Visible = true;
+            }
+        }
+
+        protected void btnNuevaContra_Click(object sender, EventArgs e)
+        {
+            var keys = new string[]
+            {
+                txtNuevaContra.Text,
+                txtNuevaContraConfirm.Text
+            };
+
+            if (ValidatorService.AllRegister(keys, 3))
+            {
+                if (new DAOUsuario(new NewConnection()).NewPassword(txtNuevaContra.Text, IdUsuario.Value))
+                {
+                    Response.Write("<script>");
+                    Response.Write("window.addEventListener('load', function () {$('#mdlCambio').modal('show');});");
+                    Response.Write("</script>");
+                }
+                else
+                {
+                    serverError.Visible = true;
+                }
             }
         }
     }

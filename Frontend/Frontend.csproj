@@ -87,6 +87,7 @@
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\datatables.js" />
     <Content Include="js\frmListaUsuarios.js" />
+    <Content Include="js\frmListaUsuariosRetro.js" />
     <Content Include="js\frmLogin.js" />
     <Content Include="js\frmRegistroAlumno.js" />
     <Content Include="js\frmRegistroUsuario.js" />

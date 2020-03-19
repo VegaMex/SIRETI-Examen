@@ -49,6 +49,12 @@ namespace Backend.Security
                     }
 
                     return v12 && v22 && v32 && v42 && v52 && v62 ? true : false;
+
+                case 3: // Valida contraseña
+                    var v13 = ValidatePassword(keys[0]);
+                    var v23 = ValidateBoth(keys[0], keys[1]);
+
+                    return v13 && v23 ? true : false;
             }
             return false;
         }

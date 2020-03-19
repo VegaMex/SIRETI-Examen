@@ -73,7 +73,6 @@
                 }
                 event.preventDefault();
             }
-
         } catch (e) {
             event.preventDefault();
         }
