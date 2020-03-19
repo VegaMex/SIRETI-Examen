@@ -56,6 +56,25 @@ namespace Backend.DAOS
             }
         }
 
+        public bool Delete(string id)
+        {
+            try
+            {
+                var sqlCommand = "DELETE FROM usuarios WHERE id_usuario = @id_usuario LIMIT 1";
+                var columns = new string[] { "id_usuario" };
+                var keys = new string[] { id };
+
+                IConnection localConnection = connection.Create();
+                localConnection.Execute(sqlCommand, columns, keys);
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
         public Usuario Login(string email, string password)
         {
             IConnection localConnection = connection.Create();
