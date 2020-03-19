@@ -87,6 +87,15 @@ namespace Frontend
         protected global::System.Web.UI.WebControls.TextBox txtContraConfirm;
 
         /// <summary>
+        /// Control lblCarrera.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCarrera;
+
+        /// <summary>
         /// Control ddlCarrera.
         /// </summary>
         /// <remarks>
@@ -94,6 +103,15 @@ namespace Frontend
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlCarrera;
+
+        /// <summary>
+        /// Control lblTipo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTipo;
 
         /// <summary>
         /// Control ddlTipo.

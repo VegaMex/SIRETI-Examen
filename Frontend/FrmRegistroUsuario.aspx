@@ -65,7 +65,8 @@
             </div>
             <div class="form-row justify-content-center">
                 <div class="col-md-4 mb-3">
-                    <label for="ddlCarrera">Carrera</label>
+                    <asp:Label ID="lblCarrera" AssociatedControlID="ddlCarrera" runat="server" Text="Carrera"></asp:Label>
+                    <%--<label for="ddlCarrera">Carrera</label>--%>
                     <asp:DropDownList ID="ddlCarrera" class="form-control" runat="server" required></asp:DropDownList>
                     <div class="invalid-feedback">
                         Debe seleccionar una carrera
@@ -74,7 +75,8 @@
             </div>
             <div class="form-row justify-content-center">
                 <div class="col-md-4 mb-3">
-                    <label for="ddlTipo">Tipo</label>
+                    <asp:Label ID="lblTipo" AssociatedControlID="ddlTipo" runat="server" Text="Tipo"></asp:Label>
+                    <%--<label for="ddlTipo">Tipo</label>--%>
                     <asp:DropDownList ID="ddlTipo" class="form-control" runat="server" required>
                         <asp:ListItem Selected="True" Value="2">Coordinador</asp:ListItem>
                         <asp:ListItem Value="3">Encargado</asp:ListItem>
@@ -87,7 +89,7 @@
             </div>
             <div class="form-row justify-content-center">
                 <asp:Button ID="btnCancelar" class="btn btn-secondary mr-4" runat="server" Text="Cancelar" OnClick="btnCancelar_Click" />
-                <asp:Button ID="btnRegistrar" class="btn btn-primary" runat="server" Text="Registrarme" OnClick="btnRegistrar_Click" />
+                <asp:Button ID="btnRegistrar" class="btn btn-primary" runat="server" Text="Registrar" OnClick="btnRegistrar_Click" />
             </div>
         </form>
     </div>

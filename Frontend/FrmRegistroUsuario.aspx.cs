@@ -22,7 +22,8 @@ namespace Frontend
             {
                 if (!IsPostBack)
                 {
-                    if (Int32.Parse(Session["tipo"].ToString()) == 0)
+                    var tipo = Int32.Parse(Session["tipo"].ToString());
+                    if (tipo == 0)
                     {
                         ddlTipo.Visible = true;
                         ddlCarrera.Visible = true;
@@ -30,6 +31,11 @@ namespace Frontend
                         ddlCarrera.DataValueField = "IdCarrera";
                         ddlCarrera.DataTextField = "NombreCarrera";
                         ddlCarrera.DataBind();
+                    } 
+                    else if (tipo == 2 || tipo == 3)
+                    {
+                        lblCarrera.Visible = false;
+                        lblTipo.Visible = false;
                     }
                 }
             }
@@ -57,23 +63,55 @@ namespace Frontend
             };
             if (ValidatorService.AllRegister(keys, 2))
             {
-                var usuario = new Usuario
+                var tipo = Int32.Parse(Session["tipo"].ToString());
+                if (tipo == 0)
                 {
-                    NombreUsuario = txtNombre.Text,
-                    PaternoUsuario = txtPaterno.Text,
-                    MaternoUsuario = txtMaterno.Text,
-                    CorreoUsuario = txtCorreo.Text,
-                    ContraUsuario = txtContra.Text,
-                    CarreraUsuario = Int32.Parse(ddlCarrera.SelectedItem.Value),
-                    TipoUsuario = Int32.Parse(ddlTipo.SelectedItem.Value)
-                };
-                if (new DAOUsuario(new NewConnection()).Insert(usuario))
+                    var usuario = new Usuario
+                    {
+                        NombreUsuario = txtNombre.Text,
+                        PaternoUsuario = txtPaterno.Text,
+                        MaternoUsuario = txtMaterno.Text,
+                        CorreoUsuario = txtCorreo.Text,
+                        ContraUsuario = txtContra.Text,
+                        CarreraUsuario = Int32.Parse(ddlCarrera.SelectedItem.Value),
+                        TipoUsuario = Int32.Parse(ddlTipo.SelectedItem.Value)
+                    };
+
+                    if (new DAOUsuario(new NewConnection()).Insert(usuario))
+                    {
+                        Response.Redirect("FrmListaUsuarios.aspx");
+                    }
+                    else
+                    {
+                        serverError.Visible = true;
+                    }
+                } 
+                else if (tipo == 2 || tipo == 3)
                 {
-                    Response.Redirect("FrmListaUsuarios.aspx");
+                    var carrera = Int32.Parse(Session["carrera"].ToString());
+                    var usuario = new Usuario
+                    {
+                        NombreUsuario = txtNombre.Text,
+                        PaternoUsuario = txtPaterno.Text,
+                        MaternoUsuario = txtMaterno.Text,
+                        CorreoUsuario = txtCorreo.Text,
+                        ContraUsuario = txtContra.Text,
+                        CarreraUsuario = carrera,
+                        TipoUsuario = 4
+                    };
+
+                    if (new DAOUsuario(new NewConnection()).Insert(usuario))
+                    {
+                        Response.Redirect("FrmListaUsuarios.aspx");
+                    }
+                    else
+                    {
+                        serverError.Visible = true;
+                    }
                 }
                 else
                 {
-                    serverError.Visible = true;
+                    Response.Redirect("Default.aspx");
                 }
             }
             else
