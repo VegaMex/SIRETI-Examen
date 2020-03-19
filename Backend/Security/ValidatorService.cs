@@ -81,6 +81,5 @@ namespace Backend.Security
         {
             return pass1.Equals(pass2);
         }
-
     }
 }
