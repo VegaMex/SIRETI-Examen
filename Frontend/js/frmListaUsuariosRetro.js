@@ -33,12 +33,3 @@
         }
     });
 });
-
-function validatePassword(password) {
-    var expreg = new RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])[0-9a-zA-Z!@#$%^&*]{8,}$/g);
-    return expreg.test(password);
-}
-
-function validateBoth(pass1, pass2) {
-    return pass1 == pass2 ? true : false;
-}
