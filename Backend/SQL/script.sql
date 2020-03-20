@@ -41,9 +41,8 @@ INSERT INTO carreras (nombre_carrera) VALUES ("Ing. Industrial"); -- 7
 INSERT INTO carreras (nombre_carrera) VALUES ("Ing. Gestión Empresarial"); -- 8
 INSERT INTO carreras (nombre_carrera) VALUES ("Lic. Gastronomía"); -- 9
 
-INSERT INTO usuarios (nombre_usuario, paterno_usuario, materno_usuario, correo_usuario, contra_usuario, carrera_usuario, tipo_usuario) VALUES ('admin', 'admin', 'admin', 'a@a.aa', SHA1('Abc12#45'), 1, 0);
-INSERT INTO alumnos (control_alumno, nombre_alumno, paterno_alumno, materno_alumno, correo_alumno, contra_alumno, carrera_alumno, tipo_alumno) VALUES ('S16120245', 'Óscar', 'Vega', 'López', 'oscar@mail.com', SHA1('Abc12#45'), 2, 1);
-
+INSERT INTO usuarios (nombre_usuario, paterno_usuario, materno_usuario, correo_usuario, contra_usuario, carrera_usuario, tipo_usuario) 
+	VALUES ('admin', 'admin', 'admin', 'a@a.aa', SHA1('Abc12#45'), 1, 0);
 INSERT INTO usuarios (nombre_usuario, paterno_usuario, materno_usuario, correo_usuario, contra_usuario, carrera_usuario, tipo_usuario) 
 	VALUES ('Miguel', 'Cruz', 'Pineda', 'sistemas@itsur.edu.mx', SHA1('Abc12#45'), 2, 2);
 INSERT INTO usuarios (nombre_usuario, paterno_usuario, materno_usuario, correo_usuario, contra_usuario, carrera_usuario, tipo_usuario) 
@@ -52,3 +51,5 @@ INSERT INTO usuarios (nombre_usuario, paterno_usuario, materno_usuario, correo_u
 	VALUES ('Gabriel', 'Magaña', 'Guzmán', 'g.magana@itsur.edu.mx', SHA1('Abc12#45'), 7, 2);
 INSERT INTO usuarios (nombre_usuario, paterno_usuario, materno_usuario, correo_usuario, contra_usuario, carrera_usuario, tipo_usuario) 
 	VALUES ('Gustavo Iván', 'Vega', 'Olvera', 'gi.vega@itsur.edu.mx', SHA1('Abc12#45'), 2, 4);
+INSERT INTO alumnos (control_alumno, nombre_alumno, paterno_alumno, materno_alumno, correo_alumno, contra_alumno, carrera_alumno, tipo_alumno) 
+	VALUES ('S16120245', 'Óscar', 'Vega', 'López', 'oscar@mail.com', SHA1('Abc12#45'), 2, 1);
