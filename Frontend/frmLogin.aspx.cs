@@ -38,6 +38,7 @@ namespace Frontend
                 if (alumno != null)
                 {
                     Session["tipo"] = alumno.TipoAlumno;
+                    Session["tipoString"] = "Alumno(a)";
                     Session["nombre"] = String.Format("{0} {1} {2}", alumno.NombreAlumno, alumno.PaternoAlumno, alumno.MaternoAlumno);
                     Response.Redirect("FrmInicio.aspx");
                 }
@@ -56,6 +57,24 @@ namespace Frontend
                         else
                         {
                             Session["nombre"] = String.Format("{0} {1} {2}", usuario.NombreUsuario, usuario.PaternoUsuario, usuario.MaternoUsuario);
+                        }
+                        switch (usuario.TipoUsuario)
+                        {
+                            case 0:
+                                Session["tipoString"] = "Administrador del sistema";
+                                break;
+                            case 2:
+                                Session["tipoString"] = "Coordinador(a)";
+                                break;
+                            case 3:
+                                Session["tipoString"] = "Encargado(a)";
+                                break;
+                            case 4:
+                                Session["tipoString"] = "Docente";
+                                break;
+                            default:
+                                Session["tipoString"] = "Tipo desconocido";
+                                break;
                         }
                         Response.Redirect("FrmInicio.aspx");
                     }

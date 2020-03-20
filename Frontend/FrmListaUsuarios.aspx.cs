@@ -15,7 +15,7 @@ namespace Frontend
         protected void Page_Load(object sender, EventArgs e)
         {
             serverError.Visible = false;
-            if (!(Session["tipo"] == null))
+            if (Session["tipo"] != null)
             {
                 int tipo = Int32.Parse(Session["tipo"].ToString());
                 if (tipo != 1 || tipo != 4)
@@ -60,6 +60,7 @@ namespace Frontend
             {
                 case "btnEliminar":
                     IdUsuario.Value = grvListaUsuarios.Rows[int.Parse(e.CommandArgument.ToString())].Cells[0].Text;
+                    NombreUsuario.Value = grvListaUsuarios.Rows[int.Parse(e.CommandArgument.ToString())].Cells[1].Text;
                     Response.Write("<script>");
                     Response.Write("window.addEventListener('load', function () {$('#mdlConfirmarEliminacion').modal('show');});");
                     Response.Write("</script>");
@@ -70,6 +71,13 @@ namespace Frontend
                     Response.Write("<script>");
                     Response.Write("window.addEventListener('load', function () {$('#mdlCambiarContra').modal('show');});");
                     Response.Write("</script>");
+                    break;
+                case "btnEditar":
+                    var keys = new Dictionary<string, string>
+                    {
+                        { "id_usuario", grvListaUsuarios.Rows[int.Parse(e.CommandArgument.ToString())].Cells[0].Text }
+                    };
+                    SendWTF("FrmEditarUsuario.aspx", keys);
                     break;
             }
         }
@@ -129,6 +137,23 @@ namespace Frontend
                     serverError.Visible = true;
                 }
             }
+        }
+
+        private void SendWTF(string url, Dictionary<string, string> keys)
+        {
+            Response.Clear();
+            Response.Write("<html>");
+            Response.Write("<head></head>");
+            Response.Write("<body onload=\"document.frm.submit()\">");
+            Response.Write(string.Format("<form name=\"frm\" method=\"post\" action=\"{0}\" >", url));
+            foreach (KeyValuePair<string, string> item in keys)
+            {
+                Response.Write(string.Format("<input name=\"{0}\" type=\"hidden\" value=\"{1}\">", item.Key, item.Value));
+            }
+            Response.Write("</form>");
+            Response.Write("</body>");
+            Response.Write("</html>");
+            Response.End();
         }
     }
 }

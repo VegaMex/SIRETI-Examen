@@ -23,7 +23,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <p>¿Está seguro de que desea eliminar este registro?</p>
+                        <p>¿Está seguro de que desea eliminar a <% Response.Write(NombreUsuario.Value); %>?</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -39,7 +39,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="mdlCambiarContraLabel">Cambio de contraseña para <%Response.Write(NombreUsuario.Value); %></h5>
+                        <h5 class="modal-title" id="mdlCambiarContraLabel">Cambio de contraseña para <% Response.Write(NombreUsuario.Value); %></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -49,12 +49,12 @@
                             <asp:Label ID="lblNuevaContra" AssociatedControlID="txtNuevaContra" runat="server" Text="Nueva contraseña"></asp:Label>
                             <asp:TextBox ID="txtNuevaContra" CssClass="form-control" TextMode="Password" autocomplete="off" runat="server"></asp:TextBox>
                             <div class="invalid-feedback">
-                                La contraseña debe tener un formato válido
+                                La contraseña debe tener al menos 8 caracteres de longitud e incluir mayúsculas, minúsculas y al menos un carácter especial (!@#$%^&*)
                             </div>
                             <asp:Label ID="lblNuevaContraConfirm" AssociatedControlID="txtNuevaContraConfirm" runat="server" Text="Confirmar nueva contraseña"></asp:Label>
                             <asp:TextBox ID="txtNuevaContraConfirm" CssClass="form-control" TextMode="Password" autocomplete="off" runat="server"></asp:TextBox>
                             <div class="invalid-feedback">
-                                La verificación de contraseña es obligatoria y las contraseñas deben coincidir
+                                La verificación de contraseña es obligatoria y deben coincidir
                             </div>
                         </div>
                     </div>

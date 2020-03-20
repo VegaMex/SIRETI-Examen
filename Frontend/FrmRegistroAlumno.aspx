@@ -75,7 +75,7 @@
                     <label for="txtContra">Contraseña</label>
                     <asp:TextBox ID="txtContra" TextMode="Password" class="form-control" autocomplete="off" runat="server" required></asp:TextBox>
                     <div class="invalid-feedback">
-                        La contraseña es obligatoria y debe tener un formato válido
+                        La contraseña es obligatoria y debe tener al menos 8 caracteres de longitud e incluir mayúsculas, minúsculas y al menos un carácter especial (!@#$%^&*)
                     </div>
                 </div>
             </div>
@@ -84,7 +84,7 @@
                     <label for="txtContraConfirm">Confirmar contraseña</label>
                     <asp:TextBox ID="txtContraConfirm" TextMode="Password" class="form-control" autocomplete="off" runat="server" required></asp:TextBox>
                     <div class="invalid-feedback">
-                        La verificación de contraseña es obligatoria y las contraseñas deben coincidir
+                        La verificación de contraseña es obligatoria y deben coincidir
                     </div>
                 </div>
             </div>

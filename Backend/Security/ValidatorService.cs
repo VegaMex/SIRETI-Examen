@@ -22,6 +22,7 @@ namespace Backend.Security
                     var v60 = ValidatePassword(keys[5]);
                     var v70 = ValidateBoth(keys[5], keys[6]);
 
+                    // El materno puede ser vacío
                     if (!v40)
                     {
                         v40 = keys[3].Equals("") ? true : false;
@@ -43,6 +44,7 @@ namespace Backend.Security
                     var v52 = ValidatePassword(keys[4]);
                     var v62 = ValidateBoth(keys[4], keys[5]);
 
+                    // El materno puede ser vacío
                     if (!v32)
                     {
                         v32 = keys[2].Equals("") ? true : false;
@@ -55,6 +57,20 @@ namespace Backend.Security
                     var v23 = ValidateBoth(keys[0], keys[1]);
 
                     return v13 && v23 ? true : false;
+
+                case 4: // Valida edición
+                    var v14 = ValidateName(keys[0]);
+                    var v24 = ValidateName(keys[1]);
+                    var v34 = ValidateName(keys[2]);
+                    var v44 = ValidateEmail(keys[3]);
+
+                    // El materno puede ser vacío
+                    if (!v34)
+                    {
+                        v34 = keys[2].Equals("") ? true : false;
+                    }
+
+                    return v14 && v24 && v34 && v44 ? true : false;
             }
             return false;
         }

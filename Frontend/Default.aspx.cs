@@ -11,7 +11,13 @@ namespace Frontend
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["tipo"] != null || Session["carrera"] != null || Session["nombre"] != null || Session["tipoString"] != null)
+            {
+                Session["tipo"] = null;
+                Session["carrera"] = null;
+                Session["nombre"] = null;
+                Session["tipoString"] = null;
+            }
         }
 
         protected void btnIniciarSesion_Click(object sender, EventArgs e)

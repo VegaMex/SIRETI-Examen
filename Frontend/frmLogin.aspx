@@ -40,7 +40,7 @@
                     <label for="txtContra">Contraseña</label>
                     <asp:TextBox ID="txtContra" TextMode="Password" class="form-control" autocomplete="off" runat="server" required></asp:TextBox>
                     <div class="invalid-feedback">
-                        La contraseña es obligatoria y debe tener un formato válido
+                        La contraseña es obligatoria y debe tener al menos 8 caracteres de longitud e incluir mayúsculas, minúsculas y al menos un carácter especial (!@#$%^&*)
                     </div>
                 </div>
             </div>

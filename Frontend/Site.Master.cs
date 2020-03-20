@@ -16,13 +16,7 @@ namespace Frontend
 
         protected void btnCerrarSesion_Click(object sender, EventArgs e)
         {
-            if (Session["tipo"] != null || Session["carrera"] != null || Session["nombre"] != null)
-            {
-                Session["tipo"] = null;
-                Session["carrera"] = null;
-                Session["nombre"] = null;
-                Response.Redirect("Default.aspx");
-            }
+
         }
     }
 }

@@ -76,6 +76,7 @@
     <Content Include="css\datatables.css" />
     <Content Include="css\style.css" />
     <Content Include="Default.aspx" />
+    <Content Include="FrmEditarUsuario.aspx" />
     <Content Include="FrmInicio.aspx" />
     <Content Include="FrmListaUsuarios.aspx" />
     <Content Include="FrmLogin.aspx" />
@@ -86,6 +87,7 @@
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\datatables.js" />
+    <Content Include="js\frmEditarUsuario.js" />
     <Content Include="js\frmListaUsuarios.js" />
     <Content Include="js\frmListaUsuariosRetro.js" />
     <Content Include="js\frmLogin.js" />
@@ -102,6 +104,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FrmEditarUsuario.aspx.cs">
+      <DependentUpon>FrmEditarUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FrmEditarUsuario.aspx.designer.cs">
+      <DependentUpon>FrmEditarUsuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="FrmInicio.aspx.cs">
       <DependentUpon>FrmInicio.aspx</DependentUpon>

@@ -1,11 +1,12 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FrmRegistroUsuario.aspx.cs" Inherits="Frontend.FrmRegistroUsuario" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FrmEditarUsuario.aspx.cs" Inherits="Frontend.FrmEditarUsuario" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="content" runat="server">
     <div class="container px-3 py-3 mb-2">
-        <h1 class="display-4 text-center">Registro de usuarios</h1>
+        <h1 class="display-4 text-center">Edición de usuarios</h1>
         <form id="form2" runat="server" novalidate>
+            <asp:HiddenField ID="IdUsuario" runat="server" />
             <div id="serverError" class="alert alert-danger" runat="server">
                 Se ha producido un error en el servidor
             </div>
@@ -47,24 +48,6 @@
             </div>
             <div class="form-row justify-content-center">
                 <div class="col-md-4 mb-3">
-                    <label for="txtContra">Contraseña</label>
-                    <asp:TextBox ID="txtContra" TextMode="Password" class="form-control" autocomplete="off" runat="server" required></asp:TextBox>
-                    <div class="invalid-feedback">
-                        La contraseña es obligatoria y debe tener al menos 8 caracteres de longitud e incluir mayúsculas, minúsculas y al menos un carácter especial (!@#$%^&*)
-                    </div>
-                </div>
-            </div>
-            <div class="form-row justify-content-center">
-                <div class="col-md-4 mb-3">
-                    <label for="txtContraConfirm">Confirmar contraseña</label>
-                    <asp:TextBox ID="txtContraConfirm" TextMode="Password" class="form-control" autocomplete="off" runat="server" required></asp:TextBox>
-                    <div class="invalid-feedback">
-                        La verificación de contraseña es obligatoria y deben coincidir
-                    </div>
-                </div>
-            </div>
-            <div class="form-row justify-content-center">
-                <div class="col-md-4 mb-3">
                     <asp:Label ID="lblCarrera" AssociatedControlID="ddlCarrera" runat="server" Text="Carrera"></asp:Label>
                     <asp:DropDownList ID="ddlCarrera" class="form-control" runat="server" required></asp:DropDownList>
                     <div class="invalid-feedback">
@@ -87,11 +70,11 @@
             </div>
             <div class="form-row justify-content-center">
                 <asp:Button ID="btnCancelar" class="btn btn-secondary mr-4" runat="server" Text="Cancelar" OnClick="btnCancelar_Click" />
-                <asp:Button ID="btnRegistrar" class="btn btn-primary" runat="server" Text="Registrar" OnClick="btnRegistrar_Click" />
+                <asp:Button ID="btnEditar" class="btn btn-primary" runat="server" Text="Editar" OnClick="btnEditar_Click" />
             </div>
         </form>
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="scripts" runat="server">
-    <script src="js/frmRegistroUsuario.js"></script>
+    <script src="js/frmEditarUsuario.js"></script>
 </asp:Content>

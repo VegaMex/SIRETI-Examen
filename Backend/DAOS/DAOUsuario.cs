@@ -75,6 +75,31 @@ namespace Backend.DAOS
             }
         }
 
+        public Usuario GetOne(string id)
+        {
+            IConnection localConnection = connection.Create();
+
+            var data = localConnection.GetData("SELECT * FROM usuarios WHERE id_usuario = @id_usuario", new string[] { "id_usuario" }, new string[] { id });
+
+            Usuario usuario = null;
+
+            foreach (DataRow row in data.Rows)
+            {
+                usuario = new Usuario
+                {
+                    IdUsuario = (int)row.ItemArray[0],
+                    NombreUsuario = (string)row.ItemArray[1],
+                    PaternoUsuario = (string)row.ItemArray[2],
+                    MaternoUsuario = (string)row.ItemArray[3],
+                    CorreoUsuario = (string)row.ItemArray[4],
+                    ContraUsuario = (string)row.ItemArray[5],
+                    CarreraUsuario = (int)row.ItemArray[6],
+                    TipoUsuario = (int)row.ItemArray[7]
+                };
+            }
+
+            return usuario;
+        }
         public bool NewPassword(string newPassword, string id)
         {
             try
@@ -82,6 +107,76 @@ namespace Backend.DAOS
                 var sqlCommand = "UPDATE usuarios SET contra_usuario = SHA1(@contra_usuario) WHERE id_usuario = @id_usuario LIMIT 1";
                 var columns = new string[] { "contra_usuario", "id_usuario" };
                 var keys = new string[] { newPassword, id };
+
+                IConnection localConnection = connection.Create();
+                localConnection.Execute(sqlCommand, columns, keys);
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool UpdateAll(Usuario usuario)
+        {
+            try
+            {
+                var sqlCommand = "UPDATE usuarios SET nombre_usuario = @nombre_usuario, paterno_usuario = @paterno_usuario, materno_usuario = @materno_usuario, correo_usuario = @correo_usuario, carrera_usuario = @carrera_usuario, tipo_usuario = @tipo_usuario WHERE id_usuario = @id_usuario LIMIT 1;";
+                var columns = new string[]
+                {
+                    "id_usuario",
+                    "nombre_usuario",
+                    "paterno_usuario",
+                    "materno_usuario",
+                    "correo_usuario",
+                    "carrera_usuario",
+                    "tipo_usuario"
+                };
+                var keys = new string[]
+                {
+                    usuario.IdUsuario.ToString(),
+                    usuario.NombreUsuario,
+                    usuario.PaternoUsuario,
+                    usuario.MaternoUsuario,
+                    usuario.CorreoUsuario,
+                    usuario.CarreraUsuario.ToString(),
+                    usuario.TipoUsuario.ToString()
+                };
+
+                IConnection localConnection = connection.Create();
+                localConnection.Execute(sqlCommand, columns, keys);
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool UpdatePartial(Usuario usuario)
+        {
+            try
+            {
+                var sqlCommand = "UPDATE usuarios SET nombre_usuario = @nombre_usuario, paterno_usuario = @paterno_usuario, materno_usuario = @materno_usuario, correo_usuario = @correo_usuario WHERE id_usuario = @id_usuario LIMIT 1";
+                var columns = new string[]
+                {
+                    "id_usuario",
+                    "nombre_usuario",
+                    "paterno_usuario",
+                    "materno_usuario",
+                    "correo_usuario"
+                };
+                var keys = new string[]
+                {
+                    usuario.IdUsuario.ToString(),
+                    usuario.NombreUsuario,
+                    usuario.PaternoUsuario,
+                    usuario.MaternoUsuario,
+                    usuario.CorreoUsuario
+                };
 
                 IConnection localConnection = connection.Create();
                 localConnection.Execute(sqlCommand, columns, keys);
